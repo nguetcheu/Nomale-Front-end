@@ -1,0 +1,38 @@
+body,
+h1,
+h2,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar styles */
+nav {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.links li {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.links li:first-child {
+  margin-left: 0;
+}
+
+.links a {
+  color: #fff;
+  text-decoration: none;
+}
+

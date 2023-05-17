@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Styles -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <style>
+      .uper {
+        margin-top: 40px;
+      }
+    </style>
+
+    <div class="card uper">
+      <div class="card-header text-center">Ajouter un abonne</div>
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <form
+              [formGroup]="formAbonne"
+              (ngSubmit)="onSubmit()"
+              class="col-3"
+            >
+              <div class="form-group">
+                <label for="nom">Nom:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nom"
+                  formControlName="nom"
+                />
+                <label for="prenom">Prenom:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="prenom"
+                  formControlName="prenom"
+                />
+                <label for="age">Age:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="age"
+                  formControlName="age"
+                />
+                <label for="profession">Profession:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="profession"
+                  formControlName="profession"
+                />
+                <label for="rue">Rue:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="rue"
+                  formControlName="rue"
+                />
+                <label for="code_postal">Code_postal:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="code_postal"
+                  formControlName="code_postal"
+                />
+                <label for="ville">ville:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ville"
+                  formControlName="ville"
+                />
+                <label for="pays">Pays:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="pays"
+                  formControlName="pays"
+                />
+                <label for="telephone">Télephone:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="telephone"
+                  formControlName="telephone"
+                />
+                <label for="email">Email:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  formControlName="email"
+                />
+                <label for="id_table_rubrique">ID rubrique:</label>
+                <select
+                  name="id_table_rubrique"
+                  class="form-control"
+                  id="id_table_rubrique"
+                  formControlName="id_table_rubrique"
+                >
+                  <option
+                    *ngFor="let rubrique of rubriques"
+                    [value]="rubrique.id_rubrique"
+                  >
+                    {{ rubrique.nom }}
+                  </option>
+                </select>
+
+                <label for="">ID Motivation:</label>
+                <select
+                  name="id_motivation"
+                  class="form-control"
+                  id="id_motivation"
+                  formControlName="id_motivation"
+                >
+                  <option
+                    *ngFor="let motivation of motivations"
+                    [value]="motivation.id"
+                  >
+                    {{ motivation.intitule }}
+                  </option>
+                </select>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!formAbonne.valid"
+              >
+                Enregistrer
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <p class="text-bg-primary">{{ success }}</p>
+        <p class="text-danger">{{ erreur }}</p>
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>prénom</th>
+            <th>Age</th>
+            <th>Sexe</th>
+            <th>profession</th>
+            <th>Rue</th>
+            <th>Code postal</th>
+            <th>Ville</th>
+            <th>Télephone</th>
+            <th>email</th>
+            <th>Id rubrique</th>
+            <th>Id motivation</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="abonnes">
+          <tr *ngFor="let abonne of abonnes">
+            <td>{{ abonne.id_abonne }}</td>
+            <td>{{ abonne.nom }}</td>
+            <td>{{ abonne.prenom }}</td>
+            <td>{{ abonne.age }}</td>
+            <td>{{ abonne.sexe }}</td>
+            <td>{{ abonne.profession }}</td>
+            <td>{{ abonne.rue }}</td>
+            <td>{{ abonne.code_postal }}</td>
+            <td>{{ abonne.ville }}</td>
+            <td>{{ abonne.telephone }}</td>
+            <td>{{ abonne.email }}</td>
+            <td>{{ abonne.id_table_rubrique }}</td>
+            <td>{{ abonne.id_motivation }}</td>
+            <td>
+              <button (click)="gotoEditAbonne(abonne)" class="btn btn-primary">
+                Modifier
+              </button>
+              <button
+                (click)="deleteAbonne(abonne.id_abonne)"
+                class="btn btn-danger"
+              >
+                Supprimer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
